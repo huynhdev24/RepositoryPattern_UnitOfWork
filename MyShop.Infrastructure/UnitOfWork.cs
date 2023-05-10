@@ -20,13 +20,15 @@ namespace MyShop.Infrastructure
     public class UnitOfWork : IUnitOfWork
     {
         private ShoppingContext context;
+        private IRepository<Customer> customerRepository;
+        private IRepository<Order> orderRepository;
+        private IRepository<Product> productRepository;
 
         public UnitOfWork(ShoppingContext context)
         {
             this.context = context;
         }
 
-        private IRepository<Customer> customerRepository;
         public IRepository<Customer> CustomerRepository
         {
             get
@@ -40,7 +42,6 @@ namespace MyShop.Infrastructure
             }
         }
 
-        private IRepository<Order> orderRepository;
         public IRepository<Order> OrderRepository
         {
             get
@@ -54,7 +55,6 @@ namespace MyShop.Infrastructure
             }
         }
 
-        private IRepository<Product> productRepository;
         public IRepository<Product> ProductRepository
         {
             get
