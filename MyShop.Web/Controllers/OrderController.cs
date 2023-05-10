@@ -69,7 +69,7 @@ namespace MyShop.Web.Controllers
             return Ok("Order Created");
         }
 
-        [HttpGet]
+        [HttpGet("error")]
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
