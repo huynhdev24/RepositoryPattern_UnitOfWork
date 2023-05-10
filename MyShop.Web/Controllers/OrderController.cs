@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace MyShop.Web.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/order")]
     [ApiController]
     public class OrderController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace MyShop.Web.Controllers
             this.productRepository = productRepository;
         }
 
-        [HttpGet]
+        [HttpGet("search")]
         public IActionResult Index()
         {
             var orders = orderRepository.Find(order => order.OrderDate > DateTime.UtcNow.AddDays(-1));
@@ -29,7 +29,7 @@ namespace MyShop.Web.Controllers
             return Ok(orders);
         }
 
-        [HttpPost]
+        [HttpGet]
         public IActionResult GetAllOrders()
         {
             var products = productRepository.All();
