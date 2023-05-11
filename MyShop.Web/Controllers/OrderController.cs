@@ -19,20 +19,12 @@ namespace MyShop.Web.Controllers
             this.unitOfWork = unitOfWork;
         }
 
-        [HttpGet("search")]
-        public IActionResult Index()
-        {
-            var orders = unitOfWork.OrderRepository.Find(order => order.OrderDate > DateTime.UtcNow.AddDays(-1));
-
-            return Ok(orders);
-        }
-
         [HttpGet]
         public IActionResult GetAllOrders()
         {
-            var products = unitOfWork.ProductRepository.All();
+            var orders = unitOfWork.OrderRepository.All();
 
-            return Ok(products);
+            return Ok(orders);
         }
 
         [HttpPost]
