@@ -15,12 +15,9 @@ namespace MyShop.Infrastructure.Repositories
         {
         }
 
-        public override IEnumerable<Order> Find(Expression<Func<Order, bool>> predicate)
+        public List<Order> Find(Expression<Func<Order, bool>> predicate)
         {
-            return context.Orders
-                .Include(order => order.LineItems)
-                .ThenInclude(lineItem => lineItem.Product)
-                .Where(predicate).ToList();
+            return base.Find(predicate).ToList();
         }
 
         public Order Update(Order order)
