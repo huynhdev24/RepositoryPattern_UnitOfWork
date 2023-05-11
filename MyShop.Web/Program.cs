@@ -2,6 +2,7 @@
 using MyShop.Domain.Models;
 using MyShop.Infrastructure.Repositories;
 using MyShop.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 
 namespace MyShop.Web
 {
@@ -18,10 +19,12 @@ namespace MyShop.Web
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddTransient<ShoppingContext>();
-            builder.Services.AddTransient<IRepository<Customer>, CustomerRepository>();
-            builder.Services.AddTransient<IRepository<Order>, OrderRepository>();
-            builder.Services.AddTransient<IRepository<Product>, ProductRepository>();
+            //builder.Services.AddTransient<ShoppingContext>();
+            builder.Services.AddDbContext<ShoppingContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
+            //builder.Services.AddTransient<IRepository<Customer>, CustomerRepository>();
+            //builder.Services.AddTransient<IRepository<Order>, OrderRepository>();
+            //builder.Services.AddTransient<IRepository<Product>, ProductRepository>();
             builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             var app = builder.Build();
