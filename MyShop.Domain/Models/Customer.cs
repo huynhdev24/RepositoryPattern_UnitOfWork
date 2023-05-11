@@ -19,5 +19,15 @@ namespace MyShop.Domain.Models
         {
             CustomerId = Guid.NewGuid();
         }
+
+        public Customer(Customer customer)
+        {
+            this.CustomerId = customer.CustomerId; 
+            this.Name = customer.Name; 
+            this.ShippingAddress = customer.ShippingAddress;
+            this.City = customer.City; 
+            this.PostalCode = customer.PostalCode; 
+            this.Country = customer.Country;
+        }
     }
 }

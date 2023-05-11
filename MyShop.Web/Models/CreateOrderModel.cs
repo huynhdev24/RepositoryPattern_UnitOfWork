@@ -1,9 +1,11 @@
-﻿namespace MyShop.Web.Models
+﻿using MyShop.Domain.Models;
+
+namespace MyShop.Web.Models
 {
     public class CreateOrderModel
     {
-        public IEnumerable<LineItemModel> LineItems { get; set; }
+        public IEnumerable<LineItem> LineItems { get; set; }
 
-        public CustomerModel Customer { get; set; }
+        public Customer Customer { get; set; }
     }
 }

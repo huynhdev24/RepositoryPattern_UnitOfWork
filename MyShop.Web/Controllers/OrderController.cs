@@ -34,29 +34,22 @@ namespace MyShop.Web.Controllers
 
             if (string.IsNullOrWhiteSpace(model.Customer.Name)) return BadRequest("Customer needs a name");
 
+            //Find a customer with the same customerId as the customer in the Order
             var customer = unitOfWork.CustomerRepository
-                .Find(c => c.Name == model.Customer.Name)
+                .Find(c => c.CustomerId == model.Customer.CustomerId)
                 .FirstOrDefault();
 
+            // If the customer exists, then assign the data
+            // in the model to the customer to update that customer, else add customer.
             if (customer != null)
             {
-                customer.ShippingAddress = model.Customer.ShippingAddress;
-                customer.PostalCode = model.Customer.PostalCode;
-                customer.City = model.Customer.City;
-                customer.Country = model.Customer.Country;
-
+                customer = model.Customer;  
                 unitOfWork.CustomerRepository.Update(customer);
             }
             else
             {
-                customer = new Customer
-                {
-                    Name = model.Customer.Name,
-                    ShippingAddress = model.Customer.ShippingAddress,
-                    City = model.Customer.City,
-                    PostalCode = model.Customer.PostalCode,
-                    Country = model.Customer.Country
-                };
+                unitOfWork.CustomerRepository.Add(model.Customer);
+                unitOfWork.SaveChanges();
             }
 
             var order = new Order
