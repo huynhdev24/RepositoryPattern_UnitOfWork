@@ -12,27 +12,27 @@ namespace MyShop.Infrastructure.DataSeeder
     {
         public void CreateInitialDatabase()
         {
-            using (var context = new ShoppingContext())
-            {
-                context.Database.EnsureDeleted();
-                context.Database.EnsureCreated();
+            //using (var context = new ShoppingContext())
+            //{
+            //    context.Database.EnsureDeleted();
+            //    context.Database.EnsureCreated();
 
-                var camera = new Product { Name = "Canon EOS 70D", Price = 599m };
-                var microphone = new Product { Name = "Shure SM7B", Price = 245m };
-                var light = new Product { Name = "Key Light", Price = 59.99m };
-                var phone = new Product { Name = "Android Phone", Price = 259.59m };
-                var speakers = new Product { Name = "5.1 Speaker System", Price = 799.99m };
+            //    var camera = new Product { Name = "Canon EOS 70D", Price = 599m };
+            //    var microphone = new Product { Name = "Shure SM7B", Price = 245m };
+            //    var light = new Product { Name = "Key Light", Price = 59.99m };
+            //    var phone = new Product { Name = "Android Phone", Price = 259.59m };
+            //    var speakers = new Product { Name = "5.1 Speaker System", Price = 799.99m };
 
-                var productRepository = new ProductRepository(context);
+            //    var productRepository = new ProductRepository(context);
 
-                productRepository.Add(camera);
-                productRepository.Add(microphone);
-                productRepository.Add(light);
-                productRepository.Add(phone);
-                productRepository.Add(speakers);
+            //    productRepository.Add(camera);
+            //    productRepository.Add(microphone);
+            //    productRepository.Add(light);
+            //    productRepository.Add(phone);
+            //    productRepository.Add(speakers);
 
-                productRepository.SaveChanges();
-            }
+            //    productRepository.SaveChanges();
+            //}
         }
     }
 }
