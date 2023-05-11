@@ -30,9 +30,11 @@ namespace MyShop.Web.Controllers
         [HttpPost]
         public IActionResult Create(CreateOrderModel model)
         {
-            if (!model.LineItems.Any()) return BadRequest("Please submit line items");
+            if (!model.LineItems.Any()) 
+                return BadRequest("Please submit line items");
 
-            if (string.IsNullOrWhiteSpace(model.Customer.Name)) return BadRequest("Customer needs a name");
+            if (string.IsNullOrWhiteSpace(model.Customer.Name)) 
+                return BadRequest("Customer needs a name");
 
             //Find a customer with the same customerId as the customer in the Order
             var customer = unitOfWork.CustomerRepository
