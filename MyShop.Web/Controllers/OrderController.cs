@@ -43,8 +43,8 @@ namespace MyShop.Web.Controllers
             // in the model to the customer to update that customer, else add customer.
             if (customer != null)
             {
-                customer = model.Customer;  
-                unitOfWork.CustomerRepository.Update(customer);
+                unitOfWork.CustomerRepository.Update(model.Customer);
+                unitOfWork.SaveChanges();
             }
             else
             {
@@ -61,11 +61,17 @@ namespace MyShop.Web.Controllers
                 Customer = customer
             };
 
-            unitOfWork.OrderRepository.Add(order);
+            if(order != null)
+            {
+                unitOfWork.OrderRepository.Add(order);
+                unitOfWork.SaveChanges();
 
-            unitOfWork.SaveChanges();
-
-            return Ok("Order Created");
+                return Ok("Order created successfully!");
+            }
+            else
+            {
+                return BadRequest("Order created failed!");
+            }
         }
 
         [HttpGet("error")]
