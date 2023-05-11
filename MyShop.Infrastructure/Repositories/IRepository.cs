@@ -14,6 +14,5 @@ namespace MyShop.Infrastructure.Repositories
         T Get(Guid id);
         IEnumerable<T> All();
         IEnumerable<T> Find(Expression<Func<T, bool>> predicate);
-        void SaveChanges();
     }
 }

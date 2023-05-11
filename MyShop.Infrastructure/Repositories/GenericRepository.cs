@@ -46,10 +46,5 @@ namespace MyShop.Infrastructure.Repositories
             return context.Update(entity)
                 .Entity;
         }
-
-        public void SaveChanges()
-        {
-            context.SaveChanges();
-        }
     }
 }
