@@ -23,16 +23,8 @@ namespace MyShop.Infrastructure.Repositories
                 .Where(predicate).ToList();
         }
 
-        public override Order Update(Order entity)
+        public Order Update(Order order)
         {
-            var order = context.Orders
-                .Include(o => o.LineItems)
-                .ThenInclude(lineItem => lineItem.Product)
-                .Single(o => o.OrderId == entity.OrderId);
-
-            order.OrderDate = entity.OrderDate;
-            order.LineItems = entity.LineItems;
-
             return base.Update(order);
         }
     }
